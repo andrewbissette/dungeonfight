@@ -18,7 +18,7 @@ public class Game {
 
         // all of this is just testing code
         Text.log("rolling 1dX");
-        Text.read("enter X: ");
+        Text.read("enter int X: ");
         Text.log(Integer.toString(Dice.roll(2,10,5)));
 
     }
