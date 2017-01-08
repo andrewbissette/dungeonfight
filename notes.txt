@@ -1,0 +1,12 @@
+Some brief notes.
+
+As a learning exercise I'm trying to build a (really, really) simple RPG-style mini-game.
+
+A player character will fight a series of enemies until dead.
+
+All characters have attributes and strategies. During each encounter, each participant is prompted to choose an action.
+
+Based on a strategy each character will perform an action ('attack', 'flee', etc). This may involve passing 'attack'
+objects to other participants, which resolve them and pass a result back.
+
+This continues until one or both characters are dead.
