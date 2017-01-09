@@ -17,8 +17,6 @@ public class Dice {
     // basic die roller
     public static int roll(int numOfSides) {
         int roll = ThreadLocalRandom.current().nextInt(1, numOfSides + 1);
-        utils.Text.log("roll: " + roll);
-
         return roll;
     }
 
