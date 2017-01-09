@@ -17,7 +17,7 @@ public class Defend implements Action {
     }
 
     @Override
-    public boolean execute(Player target, int modifier) {
+    public boolean execute(Player target) {
         // not needed
         boolean result = this.execute();
         return result;

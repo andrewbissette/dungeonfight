@@ -22,15 +22,16 @@ public class Game {
         PlayerCharacter newTarget = new PlayerCharacter();
 
         newTarget.setName("bob");
+        newTarget.setArmourClass(10);
 
-        Action oneAttack = new SingleAttack();
+        Action oneAttack = new SingleAttack(2,6,0);
 
         // add to newPc list
         newPC.addAction("attack", oneAttack);
 
         // do eet
-        newPC.perform(oneAttack, newTarget, newPC.getModifier("dex"));
-        newPC.perform(oneAttack);
+        newPC.perform(oneAttack, newTarget);
+        newTarget.getCurrentHP();
 
 
 

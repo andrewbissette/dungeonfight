@@ -1,7 +1,9 @@
 package player;
 
 import action.*;
+import action.attack.Attack;
 import utils.Dice;
+import utils.Text;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -85,6 +87,10 @@ public class PlayerCharacter implements Player {
     }
 
     public boolean perform(Action action) {
+        return this.perform(action, null);
+    }
+
+    public boolean perform(Action action, Player target) {
         // check the action list for the chosen action
         Action chosenAction;
         boolean result = false;
@@ -92,7 +98,7 @@ public class PlayerCharacter implements Player {
             if (playerAction.getValue().equals(action)) {
                 // do action
                 utils.Text.log("executing");
-                action.execute();
+                action.execute(target);
                 result = true;
             }
         }
@@ -100,14 +106,20 @@ public class PlayerCharacter implements Player {
         return result;
     }
 
-    public boolean perform(Action action, Player target) {
-        return false;
-    }
+    @Override
+    public boolean resolve(Attack incomingAttack) {
+        // unpack the attack and see if it hit
+        boolean result = false;
+        if (incomingAttack.getAttackRoll() >= this.armourClass) {
+            // hit!
+            result = true;
+            // update PC state
+            this.currentHP -= incomingAttack.getDamageRoll();
+        }
 
-    public boolean perform(Action action, Player target, int modifier) {
-        return false;
+        // tell the attacker if they hit or miss
+        return result;
     }
-
 
     //======================
     // private methods
@@ -121,7 +133,17 @@ public class PlayerCharacter implements Player {
 
     //=======================
     // getters and setters
+    // mostly temporary
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setArmourClass(int armourClass) {
+        this.armourClass = armourClass;
+    }
+
+    public int getCurrentHP() {
+        Text.log(this.currentHP + " / " + this.maxHP + " hp.");
+        return currentHP;
     }
 }
