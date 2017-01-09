@@ -15,7 +15,7 @@ public class Flee implements Action {
     }
 
     @Override
-    public boolean execute(Player target, int modifier) {
+    public boolean execute(Player target) {
         // probably not necessary
         boolean result = this.execute();
         return result;

@@ -21,4 +21,14 @@ public class Attack {
         this.damageRoll = damageRoll;
     }
 
+    // getters
+
+
+    public int getAttackRoll() {
+        return attackRoll;
+    }
+
+    public int getDamageRoll() {
+        return damageRoll;
+    }
 }

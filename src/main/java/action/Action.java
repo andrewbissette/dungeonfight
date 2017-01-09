@@ -23,6 +23,6 @@ public interface Action {
 
     // more information is needed by some actions particularly attacks
     // where this is redundant the implementation can ignore it
-    boolean execute(Player target, int modifier);
+    boolean execute(Player target);
 
 }
