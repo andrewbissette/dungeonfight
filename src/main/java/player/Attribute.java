@@ -15,14 +15,14 @@ public class Attribute {
     private int value;
     private int modifier;
 
-    Attribute() {};
+    public Attribute() {};
 
-    Attribute(int attributeValue) {
+    public Attribute(int attributeValue) {
         this(attributeValue, null);
 
     }
 
-    Attribute (int attributeValue, Integer attributeModifier) {
+    public Attribute (int attributeValue, Integer attributeModifier) {
         this.value = attributeValue;
         if (attributeModifier == null) {
             this.modifier = calculateModifier(attributeValue);

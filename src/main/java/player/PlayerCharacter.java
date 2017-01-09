@@ -1,6 +1,8 @@
 package player;
 
-import action.Action;
+import action.*;
+import utils.Dice;
+
 import java.util.Map;
 import java.util.HashMap;
 
@@ -14,18 +16,21 @@ import java.util.HashMap;
  */
 public class PlayerCharacter implements Player {
 
+    // PCs have names
+    private String name = new String();
+
     // PCs have core attributes
-    Map<String, Attribute> statBlock = new HashMap<String,Attribute>();
+    private Map<String, Attribute> statBlock = new HashMap<String,Attribute>();
 
     // PCs have health
-    int currentHP;
-    int maxHP;
+    private int currentHP;
+    private int maxHP;
 
     // PCs have armour
-    int armourClass;
+    private int armourClass;
 
     // PCs have a list of actions
-    Map<String, Action> actionList = new HashMap<String,Action>();
+    private Map<String, Action> actionList = new HashMap<String,Action>();
 
     //=======================
     // constructors
@@ -69,12 +74,54 @@ public class PlayerCharacter implements Player {
         return modifier;
     }
 
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
+    public int initiative() {
+        // roll initiative
+        return Dice.roll(1,20,this.getModifier("dex"));
+    }
+
     public boolean perform(Action action) {
-        return false;
+        // check the action list for the chosen action
+        Action chosenAction;
+        boolean result = false;
+        for(Map.Entry<String,Action> playerAction : this.actionList.entrySet()) {
+            if (playerAction.getValue().equals(action)) {
+                // do action
+                utils.Text.log("executing");
+                action.execute();
+                result = true;
+            }
+        }
+        // return success/failure
+        return result;
     }
 
     public boolean perform(Action action, Player target) {
         return false;
     }
 
+    public boolean perform(Action action, Player target, int modifier) {
+        return false;
+    }
+
+
+    //======================
+    // private methods
+
+    // populate action list
+    // private for now - currently actions will be generated at PC creation, not mid-encounter
+
+    public void addAction(String name, Action action) {
+        this.actionList.put(name, action);
+    }
+
+    //=======================
+    // getters and setters
+    public void setName(String name) {
+        this.name = name;
+    }
 }

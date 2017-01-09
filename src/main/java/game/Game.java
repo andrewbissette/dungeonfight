@@ -11,15 +11,29 @@ package game;
 
 import player.*;
 import utils.*;
+import action.*;
 
 public class Game {
 
     public static void main(String[] args) {
 
         // all of this is just testing code
-        Text.log("rolling 1dX");
-        Text.read("enter int X: ");
-        Text.log(Integer.toString(Dice.roll(2,10,5)));
+        PlayerCharacter newPC = new PlayerCharacter(10,15,16,10,10,10);
+        PlayerCharacter newTarget = new PlayerCharacter();
+
+        newTarget.setName("bob");
+
+        Action oneAttack = new SingleAttack();
+
+        // add to newPc list
+        newPC.addAction("attack", oneAttack);
+
+        // do eet
+        newPC.perform(oneAttack, newTarget, newPC.getModifier("dex"));
+        newPC.perform(oneAttack);
+
+
+
 
     }
 
