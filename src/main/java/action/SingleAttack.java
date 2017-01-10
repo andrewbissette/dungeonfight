@@ -27,12 +27,12 @@ public class SingleAttack implements Action {
         this.modifier = modifier;
     }
 
-    public SingleAttack(int numOfDice, int typeOfDice) {
-        this(numOfDice,typeOfDice,0);
+    public SingleAttack(int typeOfDice, int modifier) {
+        this(1,typeOfDice,modifier);
     }
 
     public SingleAttack(int typeOfDice) {
-        this(1, typeOfDice);
+        this(typeOfDice, 0);
     }
 
     public boolean execute() {
